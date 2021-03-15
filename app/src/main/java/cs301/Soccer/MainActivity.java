@@ -298,13 +298,11 @@ public class MainActivity extends Activity {
         // the first tick, and resets the background to normal
         CountDownTimer timer = new CountDownTimer(50,100000) {
             @Override
-            public void onFinish() {
-                topView.setBackgroundColor(backgroundColor);
-                topView.invalidate();
-            }
+            public void onFinish() { cancel(); }
             @Override
             public void onTick(long millis) {
-                cancel();
+                topView.setBackgroundColor(backgroundColor);
+                topView.invalidate();
             }
         };
 
