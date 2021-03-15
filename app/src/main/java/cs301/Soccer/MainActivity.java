@@ -46,6 +46,10 @@ public class MainActivity extends Activity {
     private EditText goalsField;
     private EditText yellowsField;
     private EditText redsField;
+    private EditText shotsField;
+    private EditText assistsField;
+    private EditText foulsField;
+    private EditText savesField;
     private EditText countField;
 
     // buttons
@@ -56,6 +60,10 @@ public class MainActivity extends Activity {
     private Button incrGoalButton;
     private Button incrYellowCardButton;
     private Button incrRedCardButton;
+    private Button incrShotsButton;
+    private Button incrAssistsButton;
+    private Button incrFoulsButton;
+    private Button incrSavesButton;
     private Button countPlayersButton;
     private Button firstPlayerButton;
     private Button nextPlayerButton;
@@ -105,6 +113,10 @@ public class MainActivity extends Activity {
         goalsField = (EditText)findViewById(R.id.goals_field);
         yellowsField = (EditText)findViewById(R.id.yellow_cards_field);
         redsField = (EditText)findViewById(R.id.red_cards_field);
+        shotsField = (EditText)findViewById(R.id.shots_field);
+        assistsField = (EditText)findViewById(R.id.assists_field);
+        foulsField = (EditText)findViewById(R.id.fouls_field);
+        savesField = (EditText)findViewById(R.id.saves_field);
         countField = (EditText)findViewById(R.id.player_count_field);
         addButton = (Button)findViewById(R.id.add_player_button_widget);
         findButton = (Button)findViewById(R.id.find_player_button_widget);
@@ -113,6 +125,10 @@ public class MainActivity extends Activity {
         incrGoalButton = (Button)findViewById(R.id.incr_goal_button_widget);
         incrYellowCardButton = (Button)findViewById(R.id.incr_yellow_card_button_widget);
         incrRedCardButton = (Button)findViewById(R.id.incr_red_card_button_widget);
+        incrShotsButton = (Button)findViewById(R.id.incr_shot_button_widget);
+        incrAssistsButton = (Button)findViewById(R.id.incr_assists_button_widget);
+        incrFoulsButton = (Button)findViewById(R.id.incr_fouls_button_widget);
+        incrSavesButton = (Button)findViewById(R.id.incr_saves_button_widget);
         countPlayersButton = (Button)findViewById(R.id.count_players_button_widget);
         firstPlayerButton = (Button)findViewById(R.id.first_player_button_widget);
         nextPlayerButton = (Button)findViewById(R.id.next_player_button_widget);
@@ -147,6 +163,10 @@ public class MainActivity extends Activity {
         incrGoalButton.setOnClickListener(new PlusGoalsButtonListener());
         incrYellowCardButton.setOnClickListener(new PlusYellowsButtonListener());
         incrRedCardButton.setOnClickListener(new PlusRedsButtonListener());
+        incrShotsButton.setOnClickListener(new PlusShotsButtonListener());
+        incrAssistsButton.setOnClickListener(new PlusAssistsButtonListener());
+        incrFoulsButton.setOnClickListener(new PlusFoulsButtonListener());
+        incrSavesButton.setOnClickListener(new PlusSavesButtonListener());
         countPlayersButton.setOnClickListener(new CountButtonListener());
         firstPlayerButton.setOnClickListener(new FirstPlayerButtonListener());
         nextPlayerButton.setOnClickListener(new NextPlayerButtonListener());
@@ -186,6 +206,10 @@ public class MainActivity extends Activity {
             goalsField.setText(currentPlayer.getGoals() + "");
             yellowsField.setText(currentPlayer.getYellowCards() + "");
             redsField.setText(currentPlayer.getRedCards() + "");
+            shotsField.setText(currentPlayer.getShots() + "");
+            assistsField.setText(currentPlayer.getAssists() + "");
+            foulsField.setText(currentPlayer.getFouls() + "");
+            savesField.setText(currentPlayer.getSaves() + "");
         }
         else if (currentPlayer != null) {
             // player exists, but we want to clear everything except the
@@ -195,6 +219,10 @@ public class MainActivity extends Activity {
             goalsField.setText("");
             yellowsField.setText("");
             redsField.setText("");
+            shotsField.setText("");
+            assistsField.setText("");
+            foulsField.setText("");
+            savesField.setText("");
         }
         else {
             // player does not exist: clear everything
@@ -205,6 +233,10 @@ public class MainActivity extends Activity {
             goalsField.setText("");
             yellowsField.setText("");
             redsField.setText("");
+            shotsField.setText("");
+            assistsField.setText("");
+            foulsField.setText("");
+            savesField.setText("");
         }
     }
 
@@ -523,6 +555,46 @@ public class MainActivity extends Activity {
         @Override
         public boolean applyAction(String first, String last) {
             return database.bumpRedCards(first, last);
+        }
+    }
+
+    /**
+     * listener class for the "+shots" button
+     */
+    private class PlusShotsButtonListener extends PlusButtonListener{
+        @Override
+        public boolean applyAction(String first, String last) {
+            return database.bumpShots(first, last);
+        }
+    }
+
+    /**
+     * listener class for the "+assists" button
+     */
+    private class PlusAssistsButtonListener extends PlusButtonListener{
+        @Override
+        public boolean applyAction(String first, String last) {
+            return database.bumpAssists(first, last);
+        }
+    }
+
+    /**
+     * listener class for the "+fouls" button
+     */
+    private class PlusFoulsButtonListener extends PlusButtonListener{
+        @Override
+        public boolean applyAction(String first, String last) {
+            return database.bumpFouls(first, last);
+        }
+    }
+
+    /**
+     * listener class for the "+saves" button
+     */
+    private class PlusSavesButtonListener extends PlusButtonListener{
+        @Override
+        public boolean applyAction(String first, String last) {
+            return database.bumpSaves(first, last);
         }
     }
 

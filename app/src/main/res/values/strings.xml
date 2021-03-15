@@ -10,9 +10,17 @@
     <string name="goals_label">Goals:</string>
     <string name="yellow_cards_label">Yellow cards:</string>
     <string name="red_cards_label">Red cards:</string>
+    <string name="shots_label">Shots:</string>
+    <string name="assists_label">Assists:</string>
+    <string name="fouls_label">Fouls:</string>
+    <string name="saves_label">Saves:</string>
     <string name="incr_goal_button">+goal</string>
     <string name="incr_yellow_card_button">+yellow card</string>
     <string name="incr_red_card_button">+red card</string>
+    <string name="incr_shots_button">+shots</string>
+    <string name="incr_assists_button">+assists</string>
+    <string name="incr_fouls_button">+fouls</string>
+    <string name="incr_saves_button">+saves</string>
     <string name="count_players_button">count players</string>
     <string name="first_player_button">first player</string>
     <string name="next_player_button">next player</string>

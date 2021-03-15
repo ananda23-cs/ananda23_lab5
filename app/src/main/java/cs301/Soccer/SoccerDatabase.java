@@ -117,6 +117,74 @@ public class SoccerDatabase implements SoccerDB {
     }
 
     /**
+     * increment a player's shots
+     *
+     * @see SoccerDB#bumpShots(String, String)
+     */
+    @Override
+    public boolean bumpShots(String firstName, String lastName) {
+        String playerName = firstName + " ## " + lastName;
+        if (database.containsKey(playerName)){
+            database.get(playerName).bumpShots();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * increment a player's assists
+     *
+     * @see SoccerDB#bumpAssists(String, String)
+     */
+    @Override
+    public boolean bumpAssists(String firstName, String lastName) {
+        String playerName = firstName + " ## " + lastName;
+        if (database.containsKey(playerName)){
+            database.get(playerName).bumpAssists();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * increment a player's fouls
+     *
+     * @see SoccerDB#bumpFouls(String, String)
+     */
+    @Override
+    public boolean bumpFouls(String firstName, String lastName) {
+        String playerName = firstName + " ## " + lastName;
+        if (database.containsKey(playerName)){
+            database.get(playerName).bumpFouls();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * increment a player's saves
+     *
+     * @see SoccerDB#bumpSaves(String, String)
+     */
+    @Override
+    public boolean bumpSaves(String firstName, String lastName) {
+        String playerName = firstName + " ## " + lastName;
+        if (database.containsKey(playerName)){
+            database.get(playerName).bumpSaves();
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    /**
      * tells the number of players on a given team
      *
      * @see SoccerDB#numPlayers(String)
@@ -186,6 +254,10 @@ public class SoccerDatabase implements SoccerDB {
                 int goals = scanner.nextInt();
                 int yellowCards = scanner.nextInt();
                 int redCards = scanner.nextInt();
+                int shots = scanner.nextInt();
+                int assists = scanner.nextInt();
+                int fouls = scanner.nextInt();
+                int saves = scanner.nextInt();
                 scanner.nextLine();
 
                 SoccerPlayer player = new SoccerPlayer(firstName,lastName,uniformNumber,teamName);
@@ -200,6 +272,22 @@ public class SoccerDatabase implements SoccerDB {
 
                 for (int i = 0; i < redCards; i++){
                     player.bumpRedCards();
+                }
+
+                for(int i = 0; i < shots; i++){
+                    player.bumpShots();
+                }
+
+                for(int i = 0; i < assists; i++){
+                    player.bumpAssists();
+                }
+
+                for(int i = 0; i < fouls; i++){
+                    player.bumpFouls();
+                }
+
+                for(int i = 0; i < saves; i++){
+                    player.bumpSaves();
                 }
 
                 database.put(firstName + " ## " + lastName, player);
@@ -223,9 +311,11 @@ public class SoccerDatabase implements SoccerDB {
         try {
             PrintWriter pw = new PrintWriter(file);
             for (SoccerPlayer player : database.values()){
-                String stats = String.format("%s %s %s %d %d %d %d", player.getFirstName(),
-                        player.getLastName(), player.getTeamName(), player.getUniform(),
-                        player.getGoals(), player.getYellowCards(), player.getRedCards());
+                String stats = String.format("%s %s %s %d %d %d %d %d %d %d %d",
+                        player.getFirstName(), player.getLastName(), player.getTeamName(),
+                        player.getUniform(), player.getGoals(), player.getYellowCards(),
+                        player.getRedCards(), player.getShots(), player.getAssists(),
+                        player.getFouls(), player.getSaves());
                 pw.println(logString(stats));
             }
             pw.close();

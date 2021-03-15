@@ -75,6 +75,42 @@ public interface SoccerDB {
     public boolean bumpRedCards(String firstName, String lastName);
 
     /**
+     * Increments the number of shots for a given player by one.
+     *
+     * @param firstName the player's first name
+     * @param lastName the player's last name
+     * @return true iff the operation was successful
+     */
+    public boolean bumpShots(String firstName, String lastName);
+
+    /**
+     * Increments the number of assists for a given player by one.
+     *
+     * @param firstName the player's first name
+     * @param lastName the player's last name
+     * @return true iff the operation was successful
+     */
+    public boolean bumpAssists(String firstName, String lastName);
+
+    /**
+     * Increments the number of fouls for a given player by one.
+     *
+     * @param firstName the player's first name
+     * @param lastName the player's last name
+     * @return true iff the operation was successful
+     */
+    public boolean bumpFouls(String firstName, String lastName);
+
+    /**
+     * Increments the number of saves for a given player by one.
+     *
+     * @param firstName the player's first name
+     * @param lastName the player's last name
+     * @return true iff the operation was successful
+     */
+    public boolean bumpSaves(String firstName, String lastName);
+
+    /**
      * Returns the number of players on a given team.
      *
      * @param teamName the name of the team, or null if players on all
